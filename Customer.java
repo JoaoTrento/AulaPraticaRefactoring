@@ -2,6 +2,7 @@ import java.util.Enumeration;
 import java.util.Vector;
 
 public class Customer {
+
     private String _name;
     private Vector _rentals = new Vector();
 
@@ -24,34 +25,33 @@ public class Customer {
         while (rentals.hasMoreElements()) {
             Rental each = (Rental) rentals.nextElement();
 
-            // show figures for this rental
             result += "\t" + each.getMovie().getTitle() + "\t" +
-                      String.valueOf(each.getCharge()) + "\n";
+                    String.valueOf(each.getCharge()) + "\n";
         }
 
         result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
-        result += "You earned " + String.valueOf(getTotalFrequentRenterPoints()) +
-                  " frequent renter points";
+        result += "You earned " +
+                String.valueOf(getTotalFrequentRenterPoints()) +
+                " frequent renter points";
 
         return result;
     }
 
-    // NOVO MÉTODO: HTML STATEMENT
     public String htmlStatement() {
         Enumeration rentals = _rentals.elements();
         String result = "<H1>Rentals for <EM>" + getName() + "</EM></H1><P>\n";
 
         while (rentals.hasMoreElements()) {
             Rental each = (Rental) rentals.nextElement();
-
             result += each.getMovie().getTitle() + ": " +
-                      String.valueOf(each.getCharge()) + "<BR>\n";
+                    String.valueOf(each.getCharge()) + "<BR>\n";
         }
 
-        result += "<P>You owe <EM>" + String.valueOf(getTotalCharge()) + "</EM><P>\n";
+        result += "<P>You owe <EM>" + String.valueOf(getTotalCharge()) +
+                "</EM><P>\n";
         result += "On this rental you earned <EM>" +
-                  String.valueOf(getTotalFrequentRenterPoints()) +
-                  "</EM> frequent renter points<P>";
+                String.valueOf(getTotalFrequentRenterPoints()) +
+                "</EM> frequent renter points<P>";
 
         return result;
     }
