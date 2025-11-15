@@ -38,4 +38,14 @@ public class Rental {
 
         return result;
     }
+
+    // Novo método extraído e movido para cá
+    public int getFrequentRenterPoints() {
+        // Se for novo lançamento alugado por mais de 1 dia → 2 pontos
+        if ((_movie.getPriceCode() == Movie.NEW_RELEASE) && _daysRented > 1) {
+            return 2;
+        }
+        // Caso contrário → 1 ponto
+        return 1;
+    }
 }
