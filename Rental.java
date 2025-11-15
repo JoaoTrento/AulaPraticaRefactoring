@@ -16,36 +16,13 @@ public class Rental {
     }
 
     public double getCharge() {
-        double result = 0;
-
-        switch (_movie.getPriceCode()) {
-            case Movie.REGULAR:
-                result += 2;
-                if (_daysRented > 2)
-                    result += (_daysRented - 2) * 1.5;
-                break;
-
-            case Movie.NEW_RELEASE:
-                result += _daysRented * 3;
-                break;
-
-            case Movie.CHILDRENS:
-                result += 1.5;
-                if (_daysRented > 3)
-                    result += (_daysRented - 3) * 1.5;
-                break;
-        }
-
-        return result;
+        return _movie.getCharge(_daysRented);
     }
 
-    // Novo método extraído e movido para cá
     public int getFrequentRenterPoints() {
-        // Se for novo lançamento alugado por mais de 1 dia → 2 pontos
         if ((_movie.getPriceCode() == Movie.NEW_RELEASE) && _daysRented > 1) {
             return 2;
         }
-        // Caso contrário → 1 ponto
         return 1;
     }
 }
